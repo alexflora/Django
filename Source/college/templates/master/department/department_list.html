@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block container %}
+
+        <style>
+        .heading{
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: bold;
+            background: cadetblue;
+            padding: 10px;
+        }
+        </style>
+        <div class="heading">
+            DEPARTMENT
+        </div>
+        <div style="padding:10px;text-align: right;">
+            <a href="create" class="btn btn-primary"><button class="button is-success">Create</button></a>
+        </div>
+
+        <table class="table table-striped" border="1px solid black" width="100%" border-collapse="collapse">
+            <tr style="height:40px">
+                <th>Name</th>
+                <th>Code</th>
+                <th colspan="2">Actions</th>
+            </tr>
+             {% for c in data %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.code }} </td>
+                    <td > <a type="button" href="edit/{{ c.id }}"> <button class="button is-info" style="height:30px;">Edit</button></a></td>
+                    <td> <a type="button" href="delete/{{ c.id }}"> <button class="button is-danger" style="height:30px;">Delete</button></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

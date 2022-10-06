@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+{%block container%}
+<h1 class="head_style">Domain details</h1>
+<table class="table_style">
+    <thead class="thead_style">
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody class="tb_style">
+        {%for i in values%}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.code}}</td>
+        </tr>
+        {%endfor%}
+    </tbody>
+
+</table>
+{%endblock%}
+        

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block container %}
+ <style>
+        .heading{
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: bold;
+            background: cadetblue;
+            padding: 10px;
+        }
+        </style>
+        <div class="heading">
+            STAFF UPDATE
+        </div>
+        <form action="/master/staff/edit/{{ rec.id }}" method="POST">
+    {% csrf_token %}
+
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+          </div>
+          <div class="media-content">
+               <div class="field">
+                <h4 class="subtitle">Name</h4>
+                    <p class="control has-icons-left has-icons-right">
+                    <input class="input" type="text" placeholder="Name" name="name" value="{{ rec.name }}">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                    <h4 class="subtitle">Code</h4>
+                  <p class="control has-icons-left">
+                    <input class="input" type="text" placeholder="Code" name="code" value="{{rec.staff_code}}">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="control">
+                    <h6 class="subtitle">Gender</h6>
+                      <select type="radio" name="gender" value={{rec.gender.selectedVal}}>
+                        <option value="">None</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                  </div>
+          </div>
+        </div>
+
+        <div class="content">
+            <button type="submit" class="button is-success">Save</button>
+            <a href="/master/staff"><button class="button is-danger">Cancel</button></a>
+        </div>
+      </div>
+    </div>
+
+</form>
+{% endblock %}

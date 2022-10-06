@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>  
+    <head>
+        <title>
+            My creation
+        </title>
+        <link rel="stylesheet" type="text/css" href={% static 'style.css' %}/>
+    </head>
+    <body class="body">
+        <h1 class="after">hello world</h1>
+        {% if Student%}
+        <table class="table_style">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+            </tr>
+            <tbody>
+                {%for ss in Student%}
+                <tr>
+                    <td>{{ss.Name}}</td>
+                    <td>{{ss.Age}}</td>
+                    <td>{{ss.Gender}}</td>
+                    <td>{{ss.image}}</a></td>
+                </tr>
+                
+                {%endfor%}
+                {%endif%}
+            </tbody>
+
+        </table>
+        <h1 class="head">hello world</h1>
+        <h6 class="head">Alexander</h6>
+        <h2 class="head">hello</h2>
+    </body>
+</html>

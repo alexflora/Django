@@ -1,0 +1,15 @@
+*{
+    margin:0;
+    padding:0;
+}
+.table_style
+{
+    border: 2px;
+    width: 100%;
+    font-family: Verdana;
+    background-color: aqua;
+}
+.after
+{
+    color: tomato;
+}

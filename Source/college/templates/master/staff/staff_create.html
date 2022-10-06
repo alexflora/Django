@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block container %}
+ <style>
+        .heading{
+            text-align: center;
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: bold;
+            background: cadetblue;
+            padding: 10px;
+        }
+        </style>
+        <div class="heading">
+            STAFF CREATE
+        </div>
+        <form action="/master/staff/create" method="POST">
+    {% csrf_token %}
+
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+          </div>
+          <div class="media-content">
+               <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                     <h6 class="subtitle">Name</h6>
+                    <input class="input" type="text" placeholder="Name" name="name">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-check"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-left">
+                    <h6 class="subtitle">Code</h6>
+                    <input class="input" type="text" placeholder="Code" name="code">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-lock"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="control">
+                  <h6 class="subtitle">Gender</h6>
+                    <select type="radio" name="gender">
+                      <option value="-----">None</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                </div>
+          </div>
+        </div>
+        <div class="content">
+            <button type="submit" class="button is-success">Save</button>
+            <a href="/master/staff"><button type="button" class="button is-danger">Cancel</button></a>
+        </div>
+      </div>
+    </div>
+
+
+<!--    <div style="text-align:center;border:1px;" class="card">-->
+
+<!--        <div style="padding:10px;"><span>Name: </span><input type="text" name="name"></div>-->
+<!--        <div style="padding:10px;"><span>code: </span> <input type="text" name="code"></div>-->
+
+<!--        <button type="submit" class="create-button"> Save </button>-->
+<!--        <button type="button" class="create-button"> Back </button></a>-->
+<!--    </div>-->
+</form>
+{% endblock %}
