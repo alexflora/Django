@@ -49,6 +49,8 @@ class CustomUser(AbstractUser):
         "bookingdetail.Customer", verbose_name="coustomer", on_delete=models.CASCADE, null=True, blank=True)
     employee = models.ForeignKey("theaterdetail.Employee",
                                  on_delete=models.CASCADE, null=True, blank=False, related_name="Employeeuser")
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
 # Create your models here.

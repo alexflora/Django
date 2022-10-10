@@ -22,11 +22,9 @@ class Branch(models.Model):
     address = models.TextField("Address", null=True, blank=False)
     theatername = models.ForeignKey(
         Theater, on_delete=models.CASCADE, null=True, blank=False)
-    movieName = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, null=True, blank=False)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Hall(models.Model):
@@ -34,7 +32,6 @@ class Hall(models.Model):
     halltype = models.CharField(max_length=20, choices=[(
         'a/c', 'A/c'), ('normal', 'Normal')], null=True, blank=False)
     totalseat = models.IntegerField("TotalSeats", null=True, blank=False)
-    amountperseat = models.FloatField("Amountperseat", null=True, blank=False)
     branchid = models.ForeignKey(
         Branch, on_delete=models.CASCADE, null=True, blank=False)
 
@@ -78,7 +75,7 @@ class Employee(models.Model):
 def event_attender_create(sender, instance, *args, **kwargs):
     if instance and kwargs['created']:
         user = CustomUser.objects.create(first_name=instance.name, email=instance.email, username=instance.name.lower(),
-                                         employee=instance, role="Employee", is_staff=True)
+                                         employee=instance, role="Employee" if instance.role == "Employee" else "Manager", is_staff=True)
         user.set_password(instance.phone)
         if instance.role.name == "Employee":
             if Group.objects.filter(name='Employee').exists():

@@ -10,12 +10,15 @@ class Bookingserializer (serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['coustomername'] = {"id": instance.coustomername.id,
-                                "Name": instance.coustomername.name}
-        res['branch'] = instance.branch.name
-        res['movie'] = instance.movie.name
-        res['hall'] = instance.hall.name
-        res['status'] = instance.status.name
+        res['branch'] = {"id": instance.branch.id if instance.branch else '',
+                         "name": instance.branch.name if instance.branch else ''}
+        res['movie'] = {"id": instance.movie.id,
+                        "name": instance.movie.name}
+        res['hall'] = {"id": instance.hall.id,
+                       "name": instance.hall.name}
+        res['halltype'] = {"value": instance.halltype,
+                           "label": instance.get_halltype_display()}
+        # res['status'] = instance.status.name
         return res
 
 
@@ -32,8 +35,15 @@ class Paymentserializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['name'] = instance.name.customername.name
+        res['name'] = {"id": instance.name.id,
+                       "name": instance.name.customername}
+        res['moviename'] = instance.name.movie.name
+        res['hall'] = instance.name.hall.name
+        res['halltype'] = instance.name.halltype
+        res['noofseats'] = instance.name.noofseats
         res['amount'] = instance.name.totalamount
+        res['type'] = {"value": instance.type,
+                       "label": instance.get_type_display()}
         return res
 
 

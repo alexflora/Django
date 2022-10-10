@@ -10,8 +10,8 @@ class Branchserializers (serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['theatername'] = instance.theatername.name
-        res['movieName'] = instance.movieName.name
+        res['theatername'] = {"id": instance.theatername.id if instance.theatername else '',
+                              "name": instance.theatername.name if instance.theatername else ''}
         return res
 
 
@@ -40,8 +40,10 @@ class Employeeserializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         res = super().to_representation(instance)
-        res['role'] = instance.role.name
-        res['branch'] = instance.branch.name
+        res['role'] = {"id": instance.role.id,
+                       "value": instance.role.name}
+        res['branch'] = {"id": instance.branch.id,
+                         "value": instance.branch.name}
         res['gender'] = {"value": instance.gender,
                          "label": instance.get_gender_display()}
         return res

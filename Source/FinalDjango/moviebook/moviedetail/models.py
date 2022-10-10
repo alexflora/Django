@@ -29,6 +29,7 @@ class Movie(models.Model):
     language = models.ManyToManyField(Language)
     movieimage = models.ImageField(
         upload_to='media/picture/', null=True, blank=False)
+    amount = models.FloatField("Amount", null=True, blank=True)
 
     def __str__(self):
         return self.name
